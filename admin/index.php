@@ -1,7 +1,7 @@
 <?php
 /**
  * Admin Dashboard
- * Modern UI Implementation - Redesigned
+ * Modern UI Implementation - Redesigned with Tailwind CSS
  */
 
 // Wrap all code in try-catch for better error handling
@@ -66,27 +66,25 @@ try {
 ?>
 
 <!-- Dashboard Content -->
-<div class="dashboard-wrapper">
+<div class="w-full">
     <!-- Page Header -->
-    <div class="page-header">
-        <h1 class="page-title">Dashboard</h1>
-        <div class="btn-group">
-            <a href="active_orders.php" class="btn btn-primary">
-                <i class="fas fa-clipboard-list"></i> View All Orders
-            </a>
-        </div>
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+        <h1 class="text-xl md:text-2xl font-bold text-slate-800">Dashboard</h1>
+        <a href="active_orders.php" class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-md transition-colors text-sm sm:text-base">
+            <i class="fas fa-clipboard-list"></i> View All Orders
+        </a>
     </div>
 
     <!-- Welcome Card -->
-    <div class="card mb-4">
-        <div class="card-body p-4">
-            <div class="d-flex align-items-center gap-md">
-                <div>
-                    <i class="fas fa-circle-user" style="font-size: 3rem; color: var(--primary);"></i>
+    <div class="bg-white rounded-lg shadow border border-slate-200 overflow-hidden mb-5">
+        <div class="p-4 sm:p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <div class="text-4xl sm:text-5xl text-violet-600">
+                    <i class="fas fa-circle-user"></i>
                 </div>
                 <div>
-                    <h2 class="mb-1">Welcome back, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</h2>
-                    <p class="text-gray mb-0">
+                    <h2 class="text-lg sm:text-xl font-semibold text-slate-800 mb-1">Welcome back, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</h2>
+                    <p class="text-slate-500 text-sm sm:text-base">
                         Last login: 
                         <?php 
                         if (!empty($adminInfo['last_login'])) {
@@ -103,114 +101,114 @@ try {
     </div>
 
     <!-- Dashboard Widgets -->
-    <div class="widget-container">
-        <div class="widget widget-primary">
-            <div class="widget-icon">
-                <i class="fas fa-clipboard-list"></i>
+    <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-5">
+        <div class="bg-white rounded-lg shadow border border-slate-200 p-4 sm:p-6 flex items-center hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-violet-100 flex items-center justify-center text-violet-600 mr-3 sm:mr-4">
+                <i class="fas fa-clipboard-list text-base sm:text-lg"></i>
             </div>
-            <div class="widget-info">
-                <div class="widget-title">Active Orders</div>
-                <div class="widget-value" id="active-order-count"><?php echo $activeOrders; ?></div>
-            </div>
-        </div>
-        
-        <div class="widget widget-success">
-            <div class="widget-icon">
-                <i class="fas fa-utensils"></i>
-            </div>
-            <div class="widget-info">
-                <div class="widget-title">Menu Items</div>
-                <div class="widget-value"><?php echo $menuItems; ?></div>
+            <div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium">Active Orders</div>
+                <div class="text-xl sm:text-2xl font-bold text-slate-800" id="active-order-count"><?php echo $activeOrders; ?></div>
             </div>
         </div>
         
-        <div class="widget widget-warning">
-            <div class="widget-icon">
-                <i class="fas fa-list"></i>
+        <div class="bg-white rounded-lg shadow border border-slate-200 p-4 sm:p-6 flex items-center hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mr-3 sm:mr-4">
+                <i class="fas fa-utensils text-base sm:text-lg"></i>
             </div>
-            <div class="widget-info">
-                <div class="widget-title">Categories</div>
-                <div class="widget-value"><?php echo $categories; ?></div>
+            <div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium">Menu Items</div>
+                <div class="text-xl sm:text-2xl font-bold text-slate-800"><?php echo $menuItems; ?></div>
             </div>
         </div>
         
-        <div class="widget widget-danger">
-            <div class="widget-icon">
-                <i class="fas fa-chart-line"></i>
+        <div class="bg-white rounded-lg shadow border border-slate-200 p-4 sm:p-6 flex items-center hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mr-3 sm:mr-4">
+                <i class="fas fa-list text-base sm:text-lg"></i>
             </div>
-            <div class="widget-info">
-                <div class="widget-title">Today's Revenue</div>
-                <div class="widget-value"><?php echo formatPrice($todayRevenue); ?></div>
+            <div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium">Categories</div>
+                <div class="text-xl sm:text-2xl font-bold text-slate-800"><?php echo $categories; ?></div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow border border-slate-200 p-4 sm:p-6 flex items-center hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 mr-3 sm:mr-4">
+                <i class="fas fa-chart-line text-base sm:text-lg"></i>
+            </div>
+            <div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium">Today's Revenue</div>
+                <div class="text-xl sm:text-2xl font-bold text-slate-800"><?php echo formatPrice($todayRevenue); ?></div>
             </div>
         </div>
     </div>
 
     <!-- Charts Section -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h2 class="card-title">Performance Overview</h2>
-            <div class="btn-group">
-                <button class="btn btn-sm btn-outline-primary active">Weekly</button>
-                <button class="btn btn-sm btn-outline-primary">Monthly</button>
+    <div class="bg-white rounded-lg shadow border border-slate-200 overflow-hidden mb-5">
+        <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <h2 class="font-semibold text-base sm:text-lg text-slate-800">Performance Overview</h2>
+            <div class="flex gap-2">
+                <button class="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium bg-violet-100 text-violet-700 rounded border border-violet-200 hover:bg-violet-200 transition-colors">Weekly</button>
+                <button class="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium bg-white text-slate-600 rounded border border-slate-200 hover:bg-slate-50 transition-colors">Monthly</button>
             </div>
         </div>
-        <div class="card-body">
-            <div style="height: 300px;">
+        <div class="p-3 sm:p-6">
+            <div class="h-[250px] md:h-[300px]">
                 <canvas id="ordersChart"></canvas>
             </div>
         </div>
     </div>
 
     <!-- Two Column Layout -->
-    <div class="dashboard-grid">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-2">
         <!-- Main Column -->
-        <div class="dashboard-main">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h2 class="card-title">Recent Active Orders</h2>
-                    <a href="active_orders.php" class="btn btn-sm btn-outline-primary">
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg shadow border border-slate-200 overflow-hidden h-full">
+                <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                    <h2 class="font-semibold text-base sm:text-lg text-slate-800">Recent Active Orders</h2>
+                    <a href="active_orders.php" class="inline-flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium border border-violet-300 text-violet-700 rounded hover:bg-violet-50 transition-colors">
                         <i class="fas fa-arrow-right"></i> View All
                     </a>
                 </div>
-                <div class="card-body">
+                <div class="p-3 sm:p-6">
                     <?php if (empty($recentOrders)): ?>
-                        <div class="text-center p-4">
-                            <i class="fas fa-clipboard-list" style="font-size: 3rem; color: var(--gray); opacity: 0.5;"></i>
-                            <p class="mt-3">No active orders at the moment.</p>
+                        <div class="text-center p-4 sm:p-8">
+                            <i class="fas fa-clipboard-list text-4xl sm:text-5xl text-slate-300 mb-3 sm:mb-4"></i>
+                            <p class="text-slate-500 text-sm sm:text-base">No active orders at the moment.</p>
                         </div>
                     <?php else: ?>
-                        <div class="table-responsive">
-                            <table class="table orders-table">
+                        <div class="overflow-x-auto -mx-3 sm:-mx-6">
+                            <table class="w-full text-left">
                                 <thead>
-                                    <tr>
-                                        <th>Order #</th>
-                                        <th>Table</th>
-                                        <th>Items</th>
-                                        <th>Total</th>
-                                        <th>Time</th>
-                                        <th>Actions</th>
+                                    <tr class="bg-slate-50">
+                                        <th class="px-3 sm:px-4 py-2 sm:py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Order #</th>
+                                        <th class="px-3 sm:px-4 py-2 sm:py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Table</th>
+                                        <th class="px-3 sm:px-4 py-2 sm:py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 hidden xs:table-cell">Items</th>
+                                        <th class="px-3 sm:px-4 py-2 sm:py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Total</th>
+                                        <th class="px-3 sm:px-4 py-2 sm:py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 hidden sm:table-cell">Time</th>
+                                        <th class="px-3 sm:px-4 py-2 sm:py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="divide-y divide-slate-200">
                                     <?php foreach ($recentOrders as $order): ?>
-                                        <tr>
-                                            <td>#<?php echo $order['id']; ?></td>
-                                            <td>Table <?php echo $order['table_number']; ?></td>
-                                            <td><?php echo $order['item_count']; ?> items</td>
-                                            <td><?php echo formatPrice($order['total_amount']); ?></td>
-                                            <td>
+                                        <tr class="hover:bg-violet-50 transition-colors">
+                                            <td class="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-slate-700">#<?php echo $order['id']; ?></td>
+                                            <td class="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-700">Table <?php echo $order['table_number']; ?></td>
+                                            <td class="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-700 hidden xs:table-cell"><?php echo $order['item_count']; ?> items</td>
+                                            <td class="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-slate-700"><?php echo formatPrice($order['total_amount']); ?></td>
+                                            <td class="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-700 hidden sm:table-cell">
                                                 <?php 
                                                 $orderTime = new DateTime($order['created_at']);
                                                 echo $orderTime->format('H:i:s');
                                                 ?>
                                             </td>
-                                            <td>
-                                                <div class="table-action">
-                                                    <a href="view_order.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-info" title="View Order">
-                                                        <i class="fas fa-eye"></i>
+                                            <td class="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">
+                                                <div class="flex gap-1 sm:gap-2">
+                                                    <a href="view_order.php?id=<?php echo $order['id']; ?>" class="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-blue-500 hover:bg-blue-600 text-white rounded" title="View Order">
+                                                        <i class="fas fa-eye text-xs sm:text-sm"></i>
                                                     </a>
-                                                    <button class="btn btn-sm btn-success complete-order" data-id="<?php echo $order['id']; ?>" title="Mark as Complete">
-                                                        <i class="fas fa-check"></i>
+                                                    <button class="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-emerald-500 hover:bg-emerald-600 text-white rounded complete-order" data-id="<?php echo $order['id']; ?>" title="Mark as Complete">
+                                                        <i class="fas fa-check text-xs sm:text-sm"></i>
                                                     </button>
                                                 </div>
                                             </td>
@@ -225,72 +223,58 @@ try {
         </div>
 
         <!-- Side Column -->
-        <div class="dashboard-side">
+        <div class="lg:col-span-1">
             <!-- Today's Summary Card -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2 class="card-title">Today's Summary</h2>
+            <div class="bg-white rounded-lg shadow border border-slate-200 overflow-hidden">
+                <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200">
+                    <h2 class="font-semibold text-base sm:text-lg text-slate-800">Today's Summary</h2>
                 </div>
-                <div class="card-body">
-                    <div class="summary-item">
+                <div class="p-4 sm:p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                         <div>
-                            <p class="mb-0" style="color: var(--gray);">Orders</p>
-                            <h3 class="mb-0"><?php echo $todayOrders; ?></h3>
+                            <p class="text-xs sm:text-sm text-slate-500 mb-1">Orders</p>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-800"><?php echo $todayOrders; ?></h3>
                         </div>
-                        <div class="summary-icon primary-bg">
-                            <i class="fas fa-shopping-cart fa-lg"></i>
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-violet-600 flex items-center justify-center text-white">
+                            <i class="fas fa-shopping-cart text-xs sm:text-base"></i>
                         </div>
                     </div>
                     
-                    <div class="summary-item">
+                    <div class="flex items-center justify-between">
                         <div>
-                            <p class="mb-0" style="color: var(--gray);">Revenue</p>
-                            <h3 class="mb-0"><?php echo formatPrice($todayRevenue); ?></h3>
+                            <p class="text-xs sm:text-sm text-slate-500 mb-1">Revenue</p>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-800"><?php echo formatPrice($todayRevenue); ?></h3>
                         </div>
-                        <div class="summary-icon success-bg">
-                            <i class="fas fa-dollar-sign fa-lg"></i>
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white">
+                            <i class="fas fa-dollar-sign text-xs sm:text-base"></i>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Quick Links Card -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2 class="card-title">Quick Links</h2>
+            <!-- Admin Stats Card -->
+            <div class="bg-white rounded-lg shadow border border-slate-200 overflow-hidden mt-4 sm:mt-6">
+                <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200">
+                    <h2 class="font-semibold text-base sm:text-lg text-slate-800">System Stats</h2>
                 </div>
-                <div class="card-body">
-                    <div class="d-flex flex-column gap-sm">
-                        <a href="menu_items.php" class="btn btn-outline-primary">
-                            <i class="fas fa-utensils"></i> Manage Menu
-                        </a>
-                        <a href="categories.php" class="btn btn-outline-primary">
-                            <i class="fas fa-list"></i> Manage Categories
-                        </a>
-                        <a href="settings.php" class="btn btn-outline-primary">
-                            <i class="fas fa-gear"></i> Settings
-                        </a>
+                <div class="p-4 sm:p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <p class="text-xs sm:text-sm text-slate-500 mb-1">Admin Users</p>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-800"><?php echo $adminCount; ?></h3>
+                        </div>
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                            <i class="fas fa-user-shield text-xs sm:text-base"></i>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- System Status Card -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">System Status</h2>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Database</span>
-                        <span class="badge badge-success">Connected</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Admin Users</span>
-                        <span class="badge badge-primary"><?php echo $adminCount; ?></span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span>System Version</span>
-                        <span class="badge badge-info">v2.0</span>
+                    
+                    <div class="grid grid-cols-2 gap-2 sm:gap-3 mt-4 sm:mt-6">
+                        <a href="menu_items.php" class="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-center font-medium rounded-md bg-violet-100 text-violet-700 hover:bg-violet-200 transition-colors">
+                            <i class="fas fa-utensils mr-1"></i> Menu
+                        </a>
+                        <a href="settings.php" class="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-center font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                            <i class="fas fa-gear mr-1"></i> Settings
+                        </a>
                     </div>
                 </div>
             </div>
@@ -298,59 +282,106 @@ try {
     </div>
 </div>
 
-<!-- Include Chart.js for dashboard charts -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize charts if the element exists
-        if (document.getElementById('ordersChart')) {
-            const ctx = document.getElementById('ordersChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                    datasets: [{
-                        label: 'Orders',
-                        data: [12, 19, 15, 17, 21, 25, 18],
-                        borderColor: '#4f46e5',
-                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
-                        borderWidth: 2,
-                        tension: 0.3,
-                        fill: true
-                    }]
+document.addEventListener('DOMContentLoaded', function() {
+    // Sample data for chart
+    const ctx = document.getElementById('ordersChart').getContext('2d');
+    
+    // Sample data
+    const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const orderData = [15, 22, 18, 24, 32, 38, 29];
+    const revenueData = [150, 220, 180, 240, 320, 380, 290];
+    
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Orders',
+                    data: orderData,
+                    borderColor: '#7c3aed',
+                    backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                drawBorder: false
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
-                    }
+                {
+                    label: 'Revenue (x10)',
+                    data: revenueData,
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true
                 }
-            });
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
         }
     });
+    
+    // Handle order completion
+    const completeButtons = document.querySelectorAll('.complete-order');
+    completeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const orderId = this.getAttribute('data-id');
+            if (confirm('Mark this order as completed?')) {
+                // Send AJAX request to complete order
+                fetch('complete_order.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'order_id=' + orderId
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove the row or update UI as needed
+                        this.closest('tr').remove();
+                        
+                        // Update active order count
+                        const countElement = document.getElementById('active-order-count');
+                        countElement.textContent = parseInt(countElement.textContent) - 1;
+                        
+                        // Show success message
+                        alert('Order #' + orderId + ' marked as completed');
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+            }
+        });
+    });
+});
 </script>
-
 <?php
-    // Include footer template
+    // Include footer
     require_once 'templates/footer.php';
 } catch (Exception $e) {
-    // Log error and display friendly message
+    // Log error and show message
     error_log('Dashboard error: ' . $e->getMessage());
     echo '<div class="alert alert-danger">An error occurred. Please try again later.</div>';
 }

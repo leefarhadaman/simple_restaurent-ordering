@@ -1,7 +1,7 @@
 <?php
 /**
  * Menu Items Management
- * Modern UI Implementation - Redesigned with Tailwind CSS
+ * Modern UI Implementation with Tailwind CSS (No Templates)
  */
 require_once '../includes/config.php';
 
@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $description = sanitizeInput($_POST['description'] ?? '');
         $price = (float) $_POST['price'];
         $isAvailable = isset($_POST['is_available']) ? 1 : 0;
+        $isVegetarian = isset($_POST['is_vegetarian']) ? 1 : 0;
         
         // Validate data
         if (empty($name) || $categoryId <= 0 || $price <= 0) {
@@ -66,7 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 description = ?,
                 price = ?,
                 image = ?,
-                is_available = ?
+                is_available = ?,
+                is_vegetarian = ?
                 WHERE id = ?
             ");
             
@@ -77,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $price,
                 $imageFilename,
                 $isAvailable,
+                $isVegetarian,
                 $itemId
             ]);
             
@@ -89,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Insert new item
             $stmt = $pdo->prepare("
-                INSERT INTO menu_items (category_id, name, description, price, image, is_available)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO menu_items (category_id, name, description, price, image, is_available, is_vegetarian)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
             ");
             
             $result = $stmt->execute([
@@ -99,7 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $description,
                 $price,
                 $imageFilename,
-                $isAvailable
+                $isAvailable,
+                $isVegetarian
             ]);
             
             if ($result) {
@@ -132,15 +136,32 @@ if (isset($_GET['delete'])) {
             throw new Exception('Menu item not found');
         }
         
-        // Delete the item
-        $stmt = $pdo->prepare("DELETE FROM menu_items WHERE id = ?");
-        $result = $stmt->execute([$itemId]);
+        // Start a transaction to ensure data integrity
+        $pdo->beginTransaction();
         
-        if ($result) {
-            $message = 'Menu item deleted successfully';
+        try {
+            // First delete all related order items
+            $stmt = $pdo->prepare("DELETE FROM order_items WHERE menu_item_id = ?");
+            $stmt->execute([$itemId]);
+            
+            // Then delete the menu item
+            $stmt = $pdo->prepare("DELETE FROM menu_items WHERE id = ?");
+            $result = $stmt->execute([$itemId]);
+            
+            if (!$result) {
+                throw new Exception('Failed to delete menu item');
+            }
+            
+            // Commit the transaction
+            $pdo->commit();
+            
+            $message = 'Menu item and all its order references permanently deleted';
             $messageType = 'success';
-        } else {
-            throw new Exception('Failed to delete menu item');
+            
+        } catch (Exception $e) {
+            // Roll back the transaction if something failed
+            $pdo->rollBack();
+            throw $e;
         }
         
     } catch (Exception $e) {
@@ -174,10 +195,227 @@ try {
 // Get settings
 $settings = getThemeSettings();
 
-// Include header template
-require_once 'templates/header.php';
+// Get current user info
+$adminInfo = getAdminInfo($_SESSION['admin_id']);
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Items - <?php echo htmlspecialchars($settings['restaurant_name']); ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                    },
+                    screens: {
+                        'xs': '475px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f9fafb;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        
+        /* Sidebar animation */
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        /* When sidebar is closed */
+        .sidebar-closed {
+            transform: translateX(-100%);
+        }
+        
+        /* Main content transition */
+        .main-content {
+            transition: margin-left 0.3s ease-in-out;
+        }
+        
+        /* Responsive main content when sidebar closed */
+        @media (min-width: 1024px) {
+            .sidebar-open {
+                margin-left: 280px;
+            }
+        }
+        
+        /* Toast animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .toast-anim {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 hidden lg:hidden"></div>
+    
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar fixed left-0 top-0 z-40 h-screen w-[280px] bg-white border-r border-gray-200 pt-4 pb-10 overflow-y-auto">
+        <!-- Logo -->
+        <div class="px-6 mb-8">
+            <a href="index.php" class="flex items-center">
+                <img src="<?php echo $settings['restaurant_logo'] ? '../uploads/' . $settings['restaurant_logo'] : '../assets/images/restaurant-logo.png'; ?>" 
+                     alt="<?php echo htmlspecialchars($settings['restaurant_name']); ?>" 
+                     class="h-10 w-auto mr-3">
+                <span class="text-xl font-bold text-gray-800 truncate"><?php echo htmlspecialchars($settings['restaurant_name']); ?></span>
+            </a>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="px-4">
+            <span class="text-xs font-semibold text-gray-400 px-2 uppercase tracking-wider">Main</span>
+            
+            <ul class="mt-3 space-y-1">
+                <li>
+                    <a href="index.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-chart-line w-5 h-5 mr-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="active_orders.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-bell w-5 h-5 mr-2"></i>
+                        <span>Active Orders</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="completed_orders.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-check-circle w-5 h-5 mr-2"></i>
+                        <span>Completed Orders</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <span class="mt-8 block text-xs font-semibold text-gray-400 px-2 uppercase tracking-wider">Menu Management</span>
+            
+            <ul class="mt-3 space-y-1">
+                <li>
+                    <a href="categories.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-tag w-5 h-5 mr-2"></i>
+                        <span>Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="menu_items.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-white rounded-lg bg-brand-600 hover:bg-brand-700">
+                        <i class="fas fa-utensils w-5 h-5 mr-2"></i>
+                        <span>Menu Items</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <span class="mt-8 block text-xs font-semibold text-gray-400 px-2 uppercase tracking-wider">System</span>
+            
+            <ul class="mt-3 space-y-1">
+                <li>
+                    <a href="manage_users.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-users w-5 h-5 mr-2"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-cog w-5 h-5 mr-2"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.php" 
+                       class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-sign-out-alt w-5 h-5 mr-2"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="min-h-screen pt-16 pb-10 sidebar-open">
+        <!-- Top navbar -->
+        <header class="fixed top-0 right-0 left-0 lg:left-[280px] z-30 bg-white border-b border-gray-200 h-16">
+            <div class="flex items-center justify-between h-full px-4 sm:px-6">
+                <!-- Left side - Toggle button & breadcrumb -->
+                <div class="flex items-center">
+                    <button id="menu-toggle" type="button" class="lg:hidden text-gray-500 hover:text-gray-600 p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <div class="ml-3 hidden sm:block">
+                        <h1 class="text-lg font-medium text-gray-800">Menu Items</h1>
+                    </div>
+                </div>
+                
+                <!-- Right side - User dropdown -->
+                <div class="relative">
+                    <button id="user-dropdown-button" type="button" class="flex items-center space-x-3 focus:outline-none">
+                        <div class="flex flex-col items-end">
+                            <span class="text-sm font-medium text-gray-700"><?php echo htmlspecialchars($_SESSION['admin_username']); ?></span>
+                            <span class="text-xs text-gray-500">Administrator</span>
+                        </div>
+                        <div class="h-9 w-9 rounded-full bg-brand-600 flex items-center justify-center text-white">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Page Content -->
+        <div class="px-4 sm:px-6 py-4">
 <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-4">
         <h1 class="text-2xl font-bold text-slate-800">Menu Items</h1>
@@ -214,6 +452,7 @@ require_once 'templates/header.php';
                                 <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Category</th>
                                 <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Price</th>
                                 <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Available</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Vegetarian</th>
                                 <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Actions</th>
                             </tr>
                         </thead>
@@ -239,6 +478,14 @@ require_once 'templates/header.php';
                                         </label>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
+                                        <label class="inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer vegetarian-toggle" 
+                                                <?php echo $item['is_vegetarian'] ? 'checked' : ''; ?> 
+                                                data-id="<?php echo $item['id']; ?>">
+                                            <div class="relative w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-violet-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-600"></div>
+                                        </label>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
                                         <div class="flex gap-2">
                                             <button class="inline-flex items-center justify-center w-8 h-8 bg-blue-500 hover:bg-blue-600 text-white rounded edit-item" 
                                                 data-id="<?php echo $item['id']; ?>"
@@ -247,11 +494,13 @@ require_once 'templates/header.php';
                                                 data-description="<?php echo htmlspecialchars($item['description']); ?>"
                                                 data-price="<?php echo $item['price']; ?>"
                                                 data-available="<?php echo $item['is_available']; ?>"
+                                                data-vegetarian="<?php echo $item['is_vegetarian']; ?>"
                                                 data-image="<?php echo $item['image']; ?>">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <a href="?delete=<?php echo $item['id']; ?>" class="inline-flex items-center justify-center w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded delete-item" 
-                                                onclick="return confirm('Are you sure you want to delete this item?')">
+                                            <a href="?delete=<?php echo $item['id']; ?>" 
+                                               onclick="return confirm('WARNING: This will permanently delete this menu item AND remove it from all customer order history. This action cannot be undone. Are you sure you want to proceed?')" 
+                                               class="inline-flex items-center justify-center w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
@@ -265,81 +514,91 @@ require_once 'templates/header.php';
         </div>
     </div>
 </div>
+        </div>
+    </main>
 
-<!-- Add Item Modal -->
+    <!-- Add/Edit Menu Item Modal -->
 <div class="modal hidden fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4" id="addItemModal">
-    <div class="max-w-2xl w-full bg-white rounded-lg shadow-xl">
+        <div class="max-w-lg w-full bg-white rounded-lg shadow-xl">
         <div class="p-6 border-b border-slate-200 flex items-center justify-between">
-            <h3 class="text-lg font-bold text-slate-800">Add New Menu Item</h3>
+                <h3 class="text-lg font-bold text-slate-800" id="itemModalTitle">Add New Menu Item</h3>
             <button type="button" class="text-slate-400 hover:text-slate-700" data-dismiss="modal">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <div class="p-6">
-            <form method="post" action="" id="menuItemForm" enctype="multipart/form-data" class="space-y-5">
-                <input type="hidden" name="id" id="item_id">
+                <form method="post" action="" id="itemForm" class="space-y-4" enctype="multipart/form-data">
+                    <input type="hidden" name="id" id="item_id" value="">
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Item Name *</label>
-                        <input type="text" id="name" name="name" required 
-                            class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500">
+                            <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Item Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="name" name="name" 
+                                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500"
+                                required>
                     </div>
                     
                     <div>
-                        <label for="category_id" class="block text-sm font-medium text-slate-700 mb-1">Category *</label>
-                        <select id="category_id" name="category_id" required
-                            class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500">
-                            <option value="">Select Category</option>
+                            <label for="category_id" class="block text-sm font-medium text-slate-700 mb-1">Category <span class="text-red-500">*</span></label>
+                            <select id="category_id" name="category_id" 
+                                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500"
+                                required>
+                                <option value="">Select a category</option>
                             <?php foreach ($categories as $category): ?>
                                 <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
                             <?php endforeach; ?>
                         </select>
-                    </div>
-                    
-                    <div>
-                        <label for="price" class="block text-sm font-medium text-slate-700 mb-1">Price *</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500">$</span>
-                            <input type="number" id="price" name="price" min="0.01" step="0.01" required
-                                class="w-full pl-8 px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500">
                         </div>
                     </div>
                     
                     <div>
-                        <label for="image" class="block text-sm font-medium text-slate-700 mb-1">Image</label>
-                        <input type="file" id="image" name="image" accept="image/*"
-                            class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:font-medium file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100">
-                        <div id="current_image_container" class="hidden mt-2">
-                            <p class="text-xs text-slate-500">Current Image:</p>
-                            <div class="flex items-center mt-1">
-                                <img id="current_image" src="" alt="Current" class="w-12 h-12 object-cover rounded-md">
-                                <span id="image_name" class="ml-2 text-xs text-slate-500"></span>
+                        <label for="description" class="block text-sm font-medium text-slate-700 mb-1">Description</label>
+                        <textarea id="description" name="description" rows="3"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                            <label for="price" class="block text-sm font-medium text-slate-700 mb-1">Price <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-slate-500">$</span>
+                                </div>
+                                <input type="number" id="price" name="price" min="0.01" step="0.01"
+                                    class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500"
+                                    required>
                             </div>
                         </div>
+                        
+                        <div>
+                            <label for="image" class="block text-sm font-medium text-slate-700 mb-1">Image</label>
+                            <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif"
+                                class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500">
                     </div>
-                </div>
-                
-                <div>
-                    <label for="description" class="block text-sm font-medium text-slate-700 mb-1">Description</label>
-                    <textarea id="description" name="description" rows="3"
-                        class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-500"></textarea>
                 </div>
                 
                 <div class="flex items-center">
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="is_available" name="is_available" value="1" class="sr-only peer" checked>
+                        <label for="is_available" class="inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="is_available" name="is_available" class="sr-only peer" checked>
                         <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-violet-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-violet-600"></div>
-                        <span class="ml-3 text-sm font-medium text-slate-700">Available for Order</span>
+                            <span class="ml-3 text-sm font-medium text-slate-700">Available for ordering</span>
+                    </label>
+                </div>
+                
+                <div class="flex items-center mt-4">
+                    <label for="is_vegetarian" class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="is_vegetarian" name="is_vegetarian" class="sr-only peer">
+                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-violet-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                        <span class="ml-3 text-sm font-medium text-slate-700">Vegetarian</span>
                     </label>
                 </div>
                 
                 <div class="flex gap-3 justify-end pt-4">
-                    <button type="button" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium rounded-md transition-colors" data-dismiss="modal">
+                        <button type="button" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-md transition-colors" data-dismiss="modal">
                         Cancel
                     </button>
                     <button type="submit" class="px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-md transition-colors">
-                        <i class="fas fa-save mr-1"></i> <span id="submit_text">Add Menu Item</span>
+                            <span id="submitButtonText">Add Menu Item</span>
                     </button>
                 </div>
             </form>
@@ -349,109 +608,168 @@ require_once 'templates/header.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Edit item functionality
-    const editButtons = document.querySelectorAll('.edit-item');
-    const itemForm = document.getElementById('menuItemForm');
-    const itemId = document.getElementById('item_id');
-    const nameInput = document.getElementById('name');
-    const categorySelect = document.getElementById('category_id');
-    const priceInput = document.getElementById('price');
-    const descriptionInput = document.getElementById('description');
-    const availableCheck = document.getElementById('is_available');
-    const submitText = document.getElementById('submit_text');
-    const currentImageContainer = document.getElementById('current_image_container');
-    const currentImage = document.getElementById('current_image');
-    const imageName = document.getElementById('image_name');
-    const uploadModal = document.getElementById('addItemModal');
-    
-    // Edit item click handler
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const id = this.dataset.id;
-            const category = this.dataset.category;
-            const name = this.dataset.name;
-            const description = this.dataset.description;
-            const price = this.dataset.price;
-            const available = parseInt(this.dataset.available);
-            const image = this.dataset.image;
-            
-            // Set form values
-            itemId.value = id;
-            nameInput.value = name;
-            categorySelect.value = category;
-            priceInput.value = price;
-            descriptionInput.value = description;
-            availableCheck.checked = available === 1;
-            
-            // Show current image if exists
-            if (image) {
-                currentImageContainer.classList.remove('hidden');
-                currentImage.src = '../uploads/' + image;
-                imageName.textContent = image;
-            } else {
-                currentImageContainer.classList.add('hidden');
-            }
-            
-            // Change submit button text
-            submitText.textContent = 'Update Menu Item';
-            
-            // Open the modal
-            if (uploadModal) {
-                uploadModal.classList.remove('hidden');
+        // Get all modals
+        const modals = document.querySelectorAll('.modal');
+        const modalDismissButtons = document.querySelectorAll('[data-dismiss="modal"]');
+        const modalTriggers = document.querySelectorAll('[data-toggle="modal"]');
+        
+        // Show modal when trigger is clicked
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const targetModal = document.querySelector(this.getAttribute('data-target'));
+                if (targetModal) {
+                    targetModal.classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Hide modals when dismiss buttons are clicked
+        modalDismissButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                if (modal) {
+                    modal.classList.add('hidden');
             }
         });
     });
     
-    // Reset form when adding new item
+        // Hide modals when clicking outside of modal content
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Edit menu item button functionality
+        const editButtons = document.querySelectorAll('.edit-item');
+        const itemForm = document.getElementById('itemForm');
+        const itemModalTitle = document.getElementById('itemModalTitle');
+        const submitButtonText = document.getElementById('submitButtonText');
+        
+        editButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Set form values
+                document.getElementById('item_id').value = this.dataset.id;
+                document.getElementById('name').value = this.dataset.name;
+                document.getElementById('category_id').value = this.dataset.category;
+                document.getElementById('description').value = this.dataset.description;
+                document.getElementById('price').value = this.dataset.price;
+                document.getElementById('is_available').checked = this.dataset.available === '1';
+                document.getElementById('is_vegetarian').checked = this.dataset.vegetarian === '1';
+                
+                // Update modal title and button text
+                itemModalTitle.textContent = 'Edit Menu Item';
+                submitButtonText.textContent = 'Update Menu Item';
+                
+                // Show modal
+                document.getElementById('addItemModal').classList.remove('hidden');
+            });
+        });
+        
+        // Reset form when adding a new item
     document.querySelector('[data-target="#addItemModal"]').addEventListener('click', function() {
         itemForm.reset();
-        itemId.value = '';
-        submitText.textContent = 'Add Menu Item';
-        currentImageContainer.classList.add('hidden');
-    });
-    
-    // Availability toggle
-    const availabilityToggles = document.querySelectorAll('.availability-toggle');
-    availabilityToggles.forEach(toggle => {
+            document.getElementById('item_id').value = '';
+            itemModalTitle.textContent = 'Add New Menu Item';
+            submitButtonText.textContent = 'Add Menu Item';
+        });
+        
+        // Handle availability toggle
+        document.querySelectorAll('.availability-toggle').forEach(toggle => {
         toggle.addEventListener('change', function() {
             const itemId = this.dataset.id;
             const isAvailable = this.checked ? 1 : 0;
             
             // Send AJAX request to update availability
-            fetch('update_availability.php', {
+                fetch('ajax/update_availability.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'item_id=' + itemId + '&is_available=' + isAvailable
+                    body: `id=${itemId}&is_available=${isAvailable}`
             })
             .then(response => response.json())
             .then(data => {
                 if (!data.success) {
-                    // Revert toggle if failed
+                        // Revert toggle if update failed
                     this.checked = !this.checked;
                     alert('Failed to update availability: ' + data.message);
                 }
             })
             .catch(error => {
-                // Revert toggle if failed
+                    // Revert toggle on error
                 this.checked = !this.checked;
                 console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+                    alert('An error occurred while updating availability.');
+                });
             });
         });
-    });
-    
-    // Confirm delete
-    const deleteLinks = document.querySelectorAll('.delete-item');
-    deleteLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (!confirm('Are you sure you want to delete this menu item? This action cannot be undone.')) {
-                e.preventDefault();
+        
+        // Handle vegetarian toggle
+        document.querySelectorAll('.vegetarian-toggle').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const itemId = this.dataset.id;
+                const isVegetarian = this.checked ? 1 : 0;
+                
+                // Send AJAX request to update vegetarian status
+                fetch('ajax/update_vegetarian.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `id=${itemId}&is_vegetarian=${isVegetarian}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        // Revert toggle if update failed
+                        this.checked = !this.checked;
+                        alert('Failed to update vegetarian status: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    // Revert toggle on error
+                    this.checked = !this.checked;
+                    console.error('Error:', error);
+                    alert('An error occurred while updating vegetarian status.');
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const mainContent = document.getElementById('main-content');
+        
+        menuToggle.addEventListener('click', function() {
+            if (sidebar.classList.contains('sidebar-closed')) {
+                // Open sidebar
+                sidebar.classList.remove('sidebar-closed');
+                mobileOverlay.classList.remove('hidden');
+            } else {
+                // Close sidebar
+                sidebar.classList.add('sidebar-closed');
+                mobileOverlay.classList.add('hidden');
             }
         });
+        
+        // Close sidebar when clicking on overlay
+        mobileOverlay.addEventListener('click', function() {
+            sidebar.classList.add('sidebar-closed');
+            mobileOverlay.classList.add('hidden');
+        });
+        
+        // User dropdown
+        const userDropdownButton = document.getElementById('user-dropdown-button');
+        
+        userDropdownButton.addEventListener('click', function() {
+            // Toggle user dropdown menu (you can extend this)
+            alert('User dropdown clicked');
     });
 });
 </script>
-
-<?php require_once 'templates/footer.php'; ?> 
+</body>
+</html> 

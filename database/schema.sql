@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_number` int(11) NOT NULL,
   `total_amount` decimal(10,2) NOT NULL,
-  `status` enum('pending', 'completed') DEFAULT 'pending',
+  `status` enum('pending', 'preparing', 'completed') DEFAULT 'pending',
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   `completed_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)

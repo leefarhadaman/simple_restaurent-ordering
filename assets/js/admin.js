@@ -202,76 +202,68 @@ document.addEventListener('DOMContentLoaded', function() {
     // Order status update
     const completeOrderButtons = document.querySelectorAll('.complete-order');
     
-    if (completeOrderButtons.length) {
-        completeOrderButtons.forEach(button => {
-            button.addEventListener('click', function() {
+    completeOrderButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (confirm('Mark this order as completed?')) {
                 const orderId = this.getAttribute('data-id');
                 const row = this.closest('tr');
                 
-                if (confirm('Mark this order as complete?')) {
-                    // Add loading state
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                    this.disabled = true;
-                    
-                    // Send AJAX request to update order status
-                    fetch('update_order_status.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `id=${orderId}&status=completed`
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            showAlert('Order #' + orderId + ' marked as complete', 'success');
+                // Add loading state
+                this.disabled = true;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                
+                // Send AJAX request
+                fetch('update_order_status.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `order_id=${orderId}&status=completed`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove the row with animation
+                        row.style.transition = 'all 0.3s ease';
+                        row.style.opacity = '0';
+                        row.style.transform = 'translateX(20px)';
+                        
+                        setTimeout(() => {
+                            row.remove();
                             
-                            // Add completed class and fade out
-                            if (row) {
-                                row.classList.add('completed');
-                                setTimeout(() => {
-                                    row.style.opacity = '0';
-                                    setTimeout(() => {
-                                        row.remove();
-                                        
-                                        // Update order count if counter exists
-                                        const orderCounter = document.getElementById('active-order-count');
-                                        if (orderCounter) {
-                                            const currentCount = parseInt(orderCounter.textContent);
-                                            orderCounter.textContent = currentCount > 0 ? currentCount - 1 : 0;
-                                        }
-                                        
-                                        // Show empty message if no orders left
-                                        const tbody = document.querySelector('.orders-table tbody');
-                                        if (tbody && tbody.children.length === 0) {
-                                            const table = tbody.closest('.table-responsive');
-                                            if (table) {
-                                                const emptyMessage = document.createElement('div');
-                                                emptyMessage.className = 'text-center p-3';
-                                                emptyMessage.innerHTML = 'No active orders at the moment';
-                                                table.parentNode.insertBefore(emptyMessage, table.nextSibling);
-                                                table.style.display = 'none';
-                                            }
-                                        }
-                                    }, 300);
-                                }, 300);
+                            // Check if there are no more orders
+                            const tbody = document.querySelector('tbody');
+                            if (tbody && tbody.children.length === 0) {
+                                const table = tbody.closest('table');
+                                if (table) {
+                                    table.innerHTML = `
+                                        <div class="text-center p-8">
+                                            <i class="fas fa-clipboard-check text-5xl text-slate-300 mb-4"></i>
+                                            <p class="text-slate-500">No active orders at the moment.</p>
+                                        </div>
+                                    `;
+                                }
                             }
-                        } else {
-                            showAlert('Error updating order status', 'danger');
-                            this.innerHTML = 'Complete';
-                            this.disabled = false;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        showAlert('Error updating order status', 'danger');
-                        this.innerHTML = 'Complete';
+                        }, 300);
+                        
+                        showAlert('Order marked as completed', 'success');
+                    } else {
+                        // Revert button state
                         this.disabled = false;
-                    });
-                }
-            });
+                        this.innerHTML = '<i class="fas fa-check"></i>';
+                        showAlert(data.message || 'Error updating order status', 'danger');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Revert button state
+                    this.disabled = false;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    showAlert('Error updating order status', 'danger');
+                });
+            }
         });
-    }
+    });
     
     // Password visibility toggle
     const passwordToggles = document.querySelectorAll('.password-toggle');

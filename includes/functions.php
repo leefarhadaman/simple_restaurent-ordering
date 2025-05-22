@@ -76,19 +76,18 @@ function getThemeColors($theme) {
  * @param string $destination Directory to save image
  * @return string|false Filename if success, false on failure
  */
-function handleImageUpload($file, $destination = '../uploads/') {
-    // Create directory if it doesn't exist
-    if (!file_exists($destination)) {
-        mkdir($destination, 0755, true);
+function handleImageUpload($file, $destination = null) {
+    // Use UPLOAD_DIR constant if destination not specified
+    if ($destination === null) {
+        $destination = UPLOAD_DIR;
     }
     
-    // Check file size (max 300KB)
-    $maxSize = 300 * 1024; // 300KB in bytes
-    if ($file['size'] > $maxSize) {
-        // Need to compress the image
-        $needCompression = true;
-    } else {
-        $needCompression = false;
+    // Create directory if it doesn't exist
+    if (!file_exists($destination)) {
+        if (!mkdir($destination, 0755, true)) {
+            error_log("Failed to create directory: " . $destination);
+            return false;
+        }
     }
     
     // Generate unique filename
@@ -98,40 +97,28 @@ function handleImageUpload($file, $destination = '../uploads/') {
     // Get image info
     $imageInfo = getimagesize($file['tmp_name']);
     if (!$imageInfo) {
+        error_log("Invalid image file: " . $file['name']);
         return false; // Not a valid image
     }
     
+    // Check mime type
     $mimeType = $imageInfo['mime'];
-    
-    if ($needCompression) {
-        // Compress image based on type
-        switch ($mimeType) {
-            case 'image/jpeg':
-                $image = imagecreatefromjpeg($file['tmp_name']);
-                imagejpeg($image, $targetFile, 75); // 75% quality
-                break;
-            case 'image/png':
-                $image = imagecreatefrompng($file['tmp_name']);
-                imagepng($image, $targetFile, 6); // Compression level 6 (0-9)
-                break;
-            case 'image/gif':
-                $image = imagecreatefromgif($file['tmp_name']);
-                imagegif($image, $targetFile);
-                break;
-            default:
-                return false; // Unsupported format
-        }
-        
-        if (isset($image)) {
-            imagedestroy($image);
-        }
-    } else {
-        // Just move the file
-        if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
-            return false;
-        }
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!in_array($mimeType, $allowedTypes)) {
+        error_log("Invalid file type: " . $mimeType);
+        return false; // Unsupported format
     }
     
+    // Log upload attempt
+    error_log("Attempting to upload file: " . $file['name'] . " to " . $targetFile);
+    
+    // Move the uploaded file
+    if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
+        error_log("Failed to move uploaded file: " . $file['tmp_name'] . " to " . $targetFile);
+        return false;
+    }
+    
+    error_log("File uploaded successfully: " . $targetFile);
     return $filename;
 }
 
@@ -141,7 +128,7 @@ function handleImageUpload($file, $destination = '../uploads/') {
  * @return string Formatted price
  */
 function formatPrice($price) {
-    return '$' . number_format($price, 2);
+    return '₹' . number_format($price, 2);
 }
 
 /**

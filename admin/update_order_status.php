@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Get and validate order ID
-$orderId = isset($_POST['id']) ? (int) $_POST['id'] : 0;
+$orderId = isset($_POST['order_id']) ? (int) $_POST['order_id'] : 0;
 $status = isset($_POST['status']) ? $_POST['status'] : '';
 
-if ($orderId <= 0 || !in_array($status, ['pending', 'completed'])) {
+if ($orderId <= 0 || !in_array($status, ['pending', 'preparing', 'completed'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid order ID or status']);
     exit;
 }

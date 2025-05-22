@@ -1,0 +1,309 @@
+[21-May-2025 06:25:25 UTC] Connection error: SQLSTATE[HY000] [1049] Unknown database 'restaurant_ordering'
+[21-May-2025 07:13:10 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:13:10 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php:34
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:13:23 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\categories.php on line 127
+[21-May-2025 07:13:23 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\categories.php:127
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\categories.php on line 127
+[21-May-2025 07:14:17 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php on line 92
+[21-May-2025 07:14:17 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php:92
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php on line 92
+[21-May-2025 07:14:53 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:14:53 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php:178
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:15:13 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:15:13 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php:34
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:16:10 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:16:10 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php:34
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:16:11 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:16:11 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php:34
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:16:12 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:16:12 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php:34
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:17:14 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:17:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php:34
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\active_orders.php on line 34
+[21-May-2025 07:19:07 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\completed_orders.php on line 56
+[21-May-2025 07:19:07 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\completed_orders.php:56
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\completed_orders.php on line 56
+[21-May-2025 07:19:14 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\completed_orders.php on line 56
+[21-May-2025 07:19:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\completed_orders.php:56
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\completed_orders.php on line 56
+[21-May-2025 07:19:26 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\categories.php on line 127
+[21-May-2025 07:19:26 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\categories.php:127
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\categories.php on line 127
+[21-May-2025 07:19:35 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:19:35 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php:178
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:19:45 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php on line 92
+[21-May-2025 07:19:45 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php:92
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php on line 92
+[21-May-2025 07:25:10 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:25:10 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php:178
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:25:52 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:25:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php:178
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 178
+[21-May-2025 07:27:46 UTC] PHP Warning:  require_once(templates/header.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php on line 92
+[21-May-2025 07:27:46 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'templates/header.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php:92
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\admin\manage_users.php on line 92
+[21-May-2025 10:55:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\restaurant_ordering\includes\functions.php:114
+Stack trace:
+#0 C:\xampp\htdocs\restaurant_ordering\admin\settings.php(45): handleImageUpload(Array)
+#1 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\includes\functions.php on line 114
+[21-May-2025 10:55:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\restaurant_ordering\includes\functions.php:114
+Stack trace:
+#0 C:\xampp\htdocs\restaurant_ordering\admin\settings.php(45): handleImageUpload(Array)
+#1 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\includes\functions.php on line 114
+[21-May-2025 10:55:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\restaurant_ordering\includes\functions.php:114
+Stack trace:
+#0 C:\xampp\htdocs\restaurant_ordering\admin\settings.php(45): handleImageUpload(Array)
+#1 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\includes\functions.php on line 114
+[21-May-2025 10:55:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\restaurant_ordering\includes\functions.php:114
+Stack trace:
+#0 C:\xampp\htdocs\restaurant_ordering\admin\settings.php(45): handleImageUpload(Array)
+#1 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\includes\functions.php on line 114
+[21-May-2025 10:55:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\restaurant_ordering\includes\functions.php:114
+Stack trace:
+#0 C:\xampp\htdocs\restaurant_ordering\admin\settings.php(45): handleImageUpload(Array)
+#1 {main}
+  thrown in C:\xampp\htdocs\restaurant_ordering\includes\functions.php on line 114
+[21-May-2025 10:57:23 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 10:57:43 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 10:58:13 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 10:58:43 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 10:59:13 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 10:59:32 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 10:59:43 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:00:09 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:00:21 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:00:45 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:01:05 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:01:35 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:02:05 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:02:35 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:03:05 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:03:35 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:04:05 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:04:35 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:05:35 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:06:35 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:06:47 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:06:49 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:06:54 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:06:59 UTC] Error checking for new orders: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'updated_at' in 'field list'
+[21-May-2025 11:47:12 UTC] Attempting to upload file: Capture-removebg-preview.png to C:\xampp\htdocs\restaurant_ordering/uploads/682dbd402d88b_Capture-removebg-preview.png
+[21-May-2025 11:47:12 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682dbd402d88b_Capture-removebg-preview.png
+[21-May-2025 11:47:42 UTC] Successfully deleted old logo: C:\xampp\htdocs\restaurant_ordering/uploads/682dbd402d88b_Capture-removebg-preview.png
+[21-May-2025 11:47:42 UTC] Attempting to upload file: image__4_-removebg-preview.png to C:\xampp\htdocs\restaurant_ordering/uploads/682dbd5ebb577_image__4_-removebg-preview.png
+[21-May-2025 11:47:42 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682dbd5ebb577_image__4_-removebg-preview.png
+[21-May-2025 11:48:15 UTC] Successfully deleted old logo: C:\xampp\htdocs\restaurant_ordering/uploads/682dbd5ebb577_image__4_-removebg-preview.png
+[21-May-2025 11:48:15 UTC] Attempting to upload file: noodles-with-beef-vegetables-black-table.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682dbd7fed168_noodles-with-beef-vegetables-black-table.jpg
+[21-May-2025 11:48:15 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682dbd7fed168_noodles-with-beef-vegetables-black-table.jpg
+[21-May-2025 12:04:48 UTC] Successfully deleted old logo: C:\xampp\htdocs\restaurant_ordering/uploads/682dbd7fed168_noodles-with-beef-vegetables-black-table.jpg
+[21-May-2025 12:04:48 UTC] Attempting to upload file: image__9_-removebg-preview.png to C:\xampp\htdocs\restaurant_ordering/uploads/682dc16063c70_image__9_-removebg-preview.png
+[21-May-2025 12:04:48 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682dc16063c70_image__9_-removebg-preview.png
+[22-May-2025 07:41:05 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\xampp\htdocs\restaurant_ordering\admin\menu_items.php on line 58
+[22-May-2025 07:48:17 UTC] Attempting to upload file: 1.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed6c136af4_1.jpg
+[22-May-2025 07:48:17 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed6c136af4_1.jpg
+[22-May-2025 07:48:50 UTC] Attempting to upload file: 1.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed6e20ebf5_1.jpg
+[22-May-2025 07:48:50 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed6e20ebf5_1.jpg
+[22-May-2025 07:49:33 UTC] Attempting to upload file: 2.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed70de376a_2.jpg
+[22-May-2025 07:49:33 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed70de376a_2.jpg
+[22-May-2025 07:49:59 UTC] Attempting to upload file: 3.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed72714005_3.jpg
+[22-May-2025 07:49:59 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed72714005_3.jpg
+[22-May-2025 07:50:48 UTC] Attempting to upload file: 4.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed7586aa10_4.jpg
+[22-May-2025 07:50:48 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed7586aa10_4.jpg
+[22-May-2025 07:51:33 UTC] Attempting to upload file: 5.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed785d40b9_5.jpg
+[22-May-2025 07:51:33 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed785d40b9_5.jpg
+[22-May-2025 07:52:00 UTC] Attempting to upload file: 53825830.cms.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed7a0989cb_53825830.cms.jpg
+[22-May-2025 07:52:00 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed7a0989cb_53825830.cms.jpg
+[22-May-2025 07:52:47 UTC] Attempting to upload file: Dahi-Vada-5.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed7cf3bab5_Dahi-Vada-5.jpg
+[22-May-2025 07:52:47 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed7cf3bab5_Dahi-Vada-5.jpg
+[22-May-2025 07:53:28 UTC] Attempting to upload file: sev-puri-recipe.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed7f8732d4_sev-puri-recipe.jpg
+[22-May-2025 07:53:28 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed7f8732d4_sev-puri-recipe.jpg
+[22-May-2025 07:54:33 UTC] Attempting to upload file: sev-puri-recipe.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed8399c72c_sev-puri-recipe.jpg
+[22-May-2025 07:54:33 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed8399c72c_sev-puri-recipe.jpg
+[22-May-2025 07:54:53 UTC] Attempting to upload file: Aloo-Papri-Chaat-09.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed84d1de43_Aloo-Papri-Chaat-09.jpg
+[22-May-2025 07:54:53 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed84d1de43_Aloo-Papri-Chaat-09.jpg
+[22-May-2025 07:55:33 UTC] Attempting to upload file: raj-kachori-chaat-recipe-1.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed8756e399_raj-kachori-chaat-recipe-1.jpg
+[22-May-2025 07:55:33 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed8756e399_raj-kachori-chaat-recipe-1.jpg
+[22-May-2025 07:56:14 UTC] Attempting to upload file: Instant-Pot-Mumbai-Pav-Bhaji.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed89e89ce7_Instant-Pot-Mumbai-Pav-Bhaji.jpg
+[22-May-2025 07:56:14 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed89e89ce7_Instant-Pot-Mumbai-Pav-Bhaji.jpg
+[22-May-2025 07:57:05 UTC] Attempting to upload file: chole-bhature-recipe.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed8d11546e_chole-bhature-recipe.jpg
+[22-May-2025 07:57:05 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed8d11546e_chole-bhature-recipe.jpg
+[22-May-2025 07:57:59 UTC] Attempting to upload file: idli-recipe.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed9075ab95_idli-recipe.jpg
+[22-May-2025 07:57:59 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed9075ab95_idli-recipe.jpg
+[22-May-2025 07:58:54 UTC] Attempting to upload file: images.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed93ec7923_images.jpg
+[22-May-2025 07:58:54 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed93ec7923_images.jpg
+[22-May-2025 07:59:37 UTC] Attempting to upload file: 3435.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed9698112a_3435.jpg
+[22-May-2025 07:59:37 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed9698112a_3435.jpg
+[22-May-2025 08:00:21 UTC] Attempting to upload file: Untitled.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ed9953543e_Untitled.jpg
+[22-May-2025 08:00:21 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ed9953543e_Untitled.jpg
+[22-May-2025 08:02:16 UTC] Attempting to upload file: 5ryio.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682eda08e4808_5ryio.jpg
+[22-May-2025 08:02:16 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682eda08e4808_5ryio.jpg
+[22-May-2025 08:04:11 UTC] Attempting to upload file: sddefault.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682eda7b32691_sddefault.jpg
+[22-May-2025 08:04:11 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682eda7b32691_sddefault.jpg
+[22-May-2025 08:05:14 UTC] Attempting to upload file: 121233.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edababf222_121233.jpg
+[22-May-2025 08:05:14 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edababf222_121233.jpg
+[22-May-2025 08:06:21 UTC] Attempting to upload file: rava.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edafd84442_rava.jpg
+[22-May-2025 08:06:21 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edafd84442_rava.jpg
+[22-May-2025 08:07:00 UTC] Attempting to upload file: r.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edb24134b1_r.jpg
+[22-May-2025 08:07:00 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edb24134b1_r.jpg
+[22-May-2025 08:08:00 UTC] Attempting to upload file: myyy.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edb60d6209_myyy.jpg
+[22-May-2025 08:08:00 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edb60d6209_myyy.jpg
+[22-May-2025 08:08:43 UTC] Attempting to upload file: pann.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edb8b4c2a3_pann.jpg
+[22-May-2025 08:08:43 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edb8b4c2a3_pann.jpg
+[22-May-2025 08:09:37 UTC] Attempting to upload file: fgr.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edbc1d1d9f_fgr.jpg
+[22-May-2025 08:09:37 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edbc1d1d9f_fgr.jpg
+[22-May-2025 08:10:37 UTC] Attempting to upload file: noo.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edbfd2c666_noo.jpg
+[22-May-2025 08:10:37 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edbfd2c666_noo.jpg
+[22-May-2025 08:11:22 UTC] Attempting to upload file: chill.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edc2a72fbe_chill.jpg
+[22-May-2025 08:11:22 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edc2a72fbe_chill.jpg
+[22-May-2025 08:12:16 UTC] Attempting to upload file: suuu.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edc605565f_suuu.jpg
+[22-May-2025 08:12:16 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edc605565f_suuu.jpg
+[22-May-2025 08:12:44 UTC] Attempting to upload file: suuu.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edc7cb2761_suuu.jpg
+[22-May-2025 08:12:44 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edc7cb2761_suuu.jpg
+[22-May-2025 08:14:02 UTC] Attempting to upload file: rice.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edcca6c7dd_rice.jpg
+[22-May-2025 08:14:02 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edcca6c7dd_rice.jpg
+[22-May-2025 08:14:46 UTC] Attempting to upload file: sezz.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edcf630671_sezz.jpg
+[22-May-2025 08:14:46 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edcf630671_sezz.jpg
+[22-May-2025 08:15:29 UTC] Attempting to upload file: msnn.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edd216c69b_msnn.jpg
+[22-May-2025 08:15:29 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edd216c69b_msnn.jpg
+[22-May-2025 08:16:22 UTC] Attempting to upload file: chpn.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edd5609d52_chpn.jpg
+[22-May-2025 08:16:22 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edd5609d52_chpn.jpg
+[22-May-2025 08:16:26 UTC] Attempting to upload file: chpn.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682edd5a8cb30_chpn.jpg
+[22-May-2025 08:16:26 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682edd5a8cb30_chpn.jpg
+[22-May-2025 09:43:10 UTC] Attempting to upload file: fries.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef1aeda96a_fries.jpg
+[22-May-2025 09:43:10 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef1aeda96a_fries.jpg
+[22-May-2025 09:44:47 UTC] Attempting to upload file: pas.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef20fed3ef_pas.jpg
+[22-May-2025 09:44:47 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef20fed3ef_pas.jpg
+[22-May-2025 09:45:38 UTC] Attempting to upload file: ara.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef24247ef2_ara.jpg
+[22-May-2025 09:45:38 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef24247ef2_ara.jpg
+[22-May-2025 09:46:20 UTC] Attempting to upload file: micro.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef26c4b919_micro.jpg
+[22-May-2025 09:46:20 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef26c4b919_micro.jpg
+[22-May-2025 09:47:53 UTC] Attempting to upload file: Untitled.png to C:\xampp\htdocs\restaurant_ordering/uploads/682ef2c9c3734_Untitled.png
+[22-May-2025 09:47:53 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef2c9c3734_Untitled.png
+[22-May-2025 09:50:46 UTC] Attempting to upload file: cor.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef3767926d_cor.jpg
+[22-May-2025 09:50:46 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef3767926d_cor.jpg
+[22-May-2025 09:54:21 UTC] Successfully deleted old logo: C:\xampp\htdocs\restaurant_ordering/uploads/682dc16063c70_image__9_-removebg-preview.png
+[22-May-2025 09:54:21 UTC] Attempting to upload file: Screenshot_20250519_113751_Flip Clock.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef44d1dab3_Screenshot_20250519_113751_Flip Clock.jpg
+[22-May-2025 09:54:21 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef44d1dab3_Screenshot_20250519_113751_Flip Clock.jpg
+[22-May-2025 09:55:20 UTC] Successfully deleted old logo: C:\xampp\htdocs\restaurant_ordering/uploads/682ef44d1dab3_Screenshot_20250519_113751_Flip Clock.jpg
+[22-May-2025 09:55:20 UTC] Attempting to upload file: vaibavam-LOGO-removebg-preview.png to C:\xampp\htdocs\restaurant_ordering/uploads/682ef488e2ab8_vaibavam-LOGO-removebg-preview.png
+[22-May-2025 09:55:20 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef488e2ab8_vaibavam-LOGO-removebg-preview.png
+[22-May-2025 09:56:36 UTC] Attempting to upload file: roo.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef4d4eefbd_roo.jpg
+[22-May-2025 09:56:36 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef4d4eefbd_roo.jpg
+[22-May-2025 09:57:24 UTC] Attempting to upload file: au.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef50466f12_au.jpg
+[22-May-2025 09:57:24 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef50466f12_au.jpg
+[22-May-2025 09:58:11 UTC] Attempting to upload file: back.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef533b2206_back.jpg
+[22-May-2025 09:58:11 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef533b2206_back.jpg
+[22-May-2025 09:58:55 UTC] Attempting to upload file: spa.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef55fdde6a_spa.jpg
+[22-May-2025 09:58:55 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef55fdde6a_spa.jpg
+[22-May-2025 10:00:22 UTC] Attempting to upload file: bec.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef5b6562ff_bec.jpg
+[22-May-2025 10:00:22 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef5b6562ff_bec.jpg
+[22-May-2025 10:00:51 UTC] Attempting to upload file: laa.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef5d335bb1_laa.jpg
+[22-May-2025 10:00:51 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef5d335bb1_laa.jpg
+[22-May-2025 10:03:20 UTC] Attempting to upload file: corn.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef668df1f8_corn.jpg
+[22-May-2025 10:03:20 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef668df1f8_corn.jpg
+[22-May-2025 10:03:59 UTC] Attempting to upload file: baby.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef68f5ad73_baby.jpg
+[22-May-2025 10:03:59 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef68f5ad73_baby.jpg
+[22-May-2025 10:04:34 UTC] Attempting to upload file: potato.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef6b2e10b1_potato.jpg
+[22-May-2025 10:04:34 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef6b2e10b1_potato.jpg
+[22-May-2025 10:05:29 UTC] Attempting to upload file: tika.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef6e95ae6e_tika.jpg
+[22-May-2025 10:05:29 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef6e95ae6e_tika.jpg
+[22-May-2025 10:05:58 UTC] Attempting to upload file: mali.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef7063f179_mali.jpg
+[22-May-2025 10:05:58 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef7063f179_mali.jpg
+[22-May-2025 10:06:31 UTC] Attempting to upload file: ball.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef727dd8f6_ball.jpg
+[22-May-2025 10:06:31 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef727dd8f6_ball.jpg
+[22-May-2025 10:07:16 UTC] Attempting to upload file: alu.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef75478094_alu.jpg
+[22-May-2025 10:07:16 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef75478094_alu.jpg
+[22-May-2025 10:09:38 UTC] Attempting to upload file: kebab.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef7e2065c5_kebab.jpg
+[22-May-2025 10:09:38 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef7e2065c5_kebab.jpg
+[22-May-2025 10:10:16 UTC] Attempting to upload file: onion.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef80862686_onion.jpg
+[22-May-2025 10:10:16 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef80862686_onion.jpg
+[22-May-2025 10:10:55 UTC] Attempting to upload file: green.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef82fa92ce_green.jpg
+[22-May-2025 10:10:55 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef82fa92ce_green.jpg
+[22-May-2025 10:11:25 UTC] Attempting to upload file: buji.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef84d6cc8b_buji.jpg
+[22-May-2025 10:11:25 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef84d6cc8b_buji.jpg
+[22-May-2025 10:13:13 UTC] Attempting to upload file: makhni.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef8b9717ae_makhni.jpg
+[22-May-2025 10:13:13 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef8b9717ae_makhni.jpg
+[22-May-2025 10:13:52 UTC] Attempting to upload file: dil.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef8e0e3196_dil.jpg
+[22-May-2025 10:13:52 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef8e0e3196_dil.jpg
+[22-May-2025 10:15:37 UTC] Attempting to upload file: ssahi.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef949d5259_ssahi.jpg
+[22-May-2025 10:15:37 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef949d5259_ssahi.jpg
+[22-May-2025 10:16:16 UTC] Attempting to upload file: amrit.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef970c24d0_amrit.jpg
+[22-May-2025 10:16:16 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef970c24d0_amrit.jpg
+[22-May-2025 10:17:25 UTC] Attempting to upload file: handi.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef9b55ff84_handi.jpg
+[22-May-2025 10:17:25 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef9b55ff84_handi.jpg
+[22-May-2025 10:18:20 UTC] Attempting to upload file: spec.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682ef9ecac613_spec.jpg
+[22-May-2025 10:18:20 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682ef9ecac613_spec.jpg
+[22-May-2025 10:19:19 UTC] Attempting to upload file: khari.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efa27323c0_khari.jpg
+[22-May-2025 10:19:19 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efa27323c0_khari.jpg
+[22-May-2025 10:20:02 UTC] Attempting to upload file: kofta.png to C:\xampp\htdocs\restaurant_ordering/uploads/682efa526a275_kofta.png
+[22-May-2025 10:20:02 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efa526a275_kofta.png
+[22-May-2025 10:20:37 UTC] Attempting to upload file: chee.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efa751083a_chee.jpg
+[22-May-2025 10:20:37 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efa751083a_chee.jpg
+[22-May-2025 10:21:16 UTC] Attempting to upload file: mug.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efa9c5d967_mug.jpg
+[22-May-2025 10:21:16 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efa9c5d967_mug.jpg
+[22-May-2025 10:22:16 UTC] Attempting to upload file: dam.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efad86d4d7_dam.jpg
+[22-May-2025 10:22:16 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efad86d4d7_dam.jpg
+[22-May-2025 10:22:58 UTC] Attempting to upload file: ban.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efb02a7e8a_ban.jpg
+[22-May-2025 10:22:58 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efb02a7e8a_ban.jpg
+[22-May-2025 10:23:52 UTC] Attempting to upload file: hed.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efb380f8d5_hed.jpg
+[22-May-2025 10:23:52 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efb380f8d5_hed.jpg
+[22-May-2025 10:24:39 UTC] Attempting to upload file: Untitled (1).jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efb678d442_Untitled (1).jpg
+[22-May-2025 10:24:39 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efb678d442_Untitled (1).jpg
+[22-May-2025 10:25:11 UTC] Attempting to upload file: korma.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efb8717665_korma.jpg
+[22-May-2025 10:25:11 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efb8717665_korma.jpg
+[22-May-2025 10:26:02 UTC] Attempting to upload file: methi.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efbba48953_methi.jpg
+[22-May-2025 10:26:02 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efbba48953_methi.jpg
+[22-May-2025 10:26:39 UTC] Attempting to upload file: dewani.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efbdf2f36c_dewani.jpg
+[22-May-2025 10:26:39 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efbdf2f36c_dewani.jpg
+[22-May-2025 10:27:24 UTC] Attempting to upload file: chana.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efc0c52121_chana.jpg
+[22-May-2025 10:27:24 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efc0c52121_chana.jpg
+[22-May-2025 10:28:05 UTC] Attempting to upload file: dal.png to C:\xampp\htdocs\restaurant_ordering/uploads/682efc35b9aa2_dal.png
+[22-May-2025 10:28:05 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efc35b9aa2_dal.png
+[22-May-2025 10:29:03 UTC] Attempting to upload file: dal_mak.jpg to C:\xampp\htdocs\restaurant_ordering/uploads/682efc6f2495b_dal_mak.jpg
+[22-May-2025 10:29:03 UTC] File uploaded successfully: C:\xampp\htdocs\restaurant_ordering/uploads/682efc6f2495b_dal_mak.jpg
